@@ -1,16 +1,11 @@
 # the_fridge
 
-A new Flutter project.
+# Prerequisites
+ Before running this application, make sure you have the following:
 
-## Getting Started
+1. Flutter installed on your machine.
 
-This project is a starting point for a Flutter application.
+2. Firebase project with authentication enabled. Create a new Firebase project from the Firebase Console and obtain the Firebase configuration details.
+https://firebase.google.com/docs/flutter/setup?platform=web
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Android Emulator or a physical device for testing. Ensure you have the necessary dependencies installed and configured for running a Flutter app on Android.
