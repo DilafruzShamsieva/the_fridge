@@ -9,3 +9,5 @@
 https://firebase.google.com/docs/flutter/setup?platform=web
 
 3. Android Emulator or a physical device for testing. Ensure you have the necessary dependencies installed and configured for running a Flutter app on Android.
+
+Have added the register and home page to sign in the user. Used Firebase to auto-register.
