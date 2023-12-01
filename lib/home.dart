@@ -7,6 +7,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _ingredientsController = TextEditingController();
+  List<String> ingredients = [];
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +27,39 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
-                String ingredients = _ingredientsController.text.trim();
+                String ingred = _ingredientsController.text.trim();
+                if (!ingredients.contains(ingred)){
+                  ingredients.add(ingred);
+                }
+                setState((){});
+
+                // test print the ingredients to the console
+                print('Suggested Menu for Ingredients: $ingredients');
+              },
+              child: Text('Add Ingredient'),
+            ),
+            ElevatedButton(
+              onPressed: () {
 
                 // test print the ingredients to the console
                 print('Suggested Menu for Ingredients: $ingredients');
               },
               child: Text('Suggest Menu'),
+            ),
+            Text('Click an Ingredient to Remove It'),
+            Expanded(
+              child: ingredients.isNotEmpty ? ListView.builder(
+                itemCount: ingredients.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(ingredients[index]),
+                    onTap: () {
+                      ingredients.remove(ingredients[index]);
+                      setState((){});
+                    }
+                  );
+                },
+              ) : Text('No Ingredients Added'),
             ),
           ],
         ),
