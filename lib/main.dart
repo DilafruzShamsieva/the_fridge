@@ -1,15 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'env/env.dart';
 import 'firebase_options.dart';
 import 'registration.dart';
 import 'home.dart';
+import 'package:dart_openai/dart_openai.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  OpenAI.apiKey = Env.apiKey;
   runApp(MyApp());
 }
 

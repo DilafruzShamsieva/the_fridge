@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:dart_openai/dart_openai.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -8,6 +10,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _ingredientsController = TextEditingController();
   List<String> ingredients = [];
+
+  void generateRecipe(List<String> ingredients) async {
+    OpenAICompletionModel completion = await OpenAI.instance.completion.create(
+        model: "text-davinci-003",
+        //maxTokens: 40,
+        prompt: "generate me a home made recipe with ${ingredients.join(",")}",
+        temperature: 0.4);
+    print(completion);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +39,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ElevatedButton(
               onPressed: () {
                 String ingred = _ingredientsController.text.trim();
-                if (!ingredients.contains(ingred)){
+                if (!ingredients.contains(ingred)) {
                   ingredients.add(ingred);
                 }
-                setState((){});
+                setState(() {});
 
                 // test print the ingredients to the console
                 print('Suggested Menu for Ingredients: $ingredients');
@@ -40,7 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-
                 // test print the ingredients to the console
                 print('Suggested Menu for Ingredients: $ingredients');
               },
@@ -48,18 +58,19 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Text('Click an Ingredient to Remove It'),
             Expanded(
-              child: ingredients.isNotEmpty ? ListView.builder(
-                itemCount: ingredients.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(ingredients[index]),
-                    onTap: () {
-                      ingredients.remove(ingredients[index]);
-                      setState((){});
-                    }
-                  );
-                },
-              ) : Text('No Ingredients Added'),
+              child: ingredients.isNotEmpty
+                  ? ListView.builder(
+                      itemCount: ingredients.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                            title: Text(ingredients[index]),
+                            onTap: () {
+                              ingredients.remove(ingredients[index]);
+                              setState(() {});
+                            });
+                      },
+                    )
+                  : Text('No Ingredients Added'),
             ),
           ],
         ),
