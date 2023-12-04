@@ -23,6 +23,7 @@ dependencies:
   dart_openai: ^5.0.0
   path: ^1.8.0
   envied: ^0.5.1
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:

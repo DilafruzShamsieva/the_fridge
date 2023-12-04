@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:dart_openai/dart_openai.dart';
+
+import 'recipes.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,13 +11,14 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _ingredientsController = TextEditingController();
   List<String> ingredients = [];
 
-  void generateRecipe(List<String> ingredients) async {
-    OpenAICompletionModel completion = await OpenAI.instance.completion.create(
-        model: "text-davinci-003",
-        //maxTokens: 40,
-        prompt: "generate me a home made recipe with ${ingredients.join(",")}",
-        temperature: 0.4);
-    print(completion);
+  void _navigateToRecipeScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            RecipesScreen(ingredients: ingredients.join(", ")),
+      ),
+    );
   }
 
   @override
@@ -53,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 // test print the ingredients to the console
                 print('Suggested Menu for Ingredients: $ingredients');
+                _navigateToRecipeScreen(context);
               },
               child: Text('Suggest Menu'),
             ),
