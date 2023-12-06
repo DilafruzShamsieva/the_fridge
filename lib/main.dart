@@ -12,7 +12,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  OpenAI.apiKey = Env.apiKey;
+  //OpenAI.apiKey = Env.apiKey;
   runApp(MyApp());
 }
 

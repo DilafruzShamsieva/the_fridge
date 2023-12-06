@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "943998443388",
-    "project_id": "the-fridge-ac372",
-    "storage_bucket": "the-fridge-ac372.appspot.com"
+    "project_number": "687314180313",
+    "project_id": "csci6180-project",
+    "storage_bucket": "csci6180-project.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:943998443388:android:b4dcaf30a58a6de2eb8ef9",
+        "mobilesdk_app_id": "1:687314180313:android:c396e68bb40b51b70186c8",
         "android_client_info": {
           "package_name": "com.example.the_fridge"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBVR6vvEEwb2N0VUCi87lkXm07GcdPgn5I"
+          "current_key": "AIzaSyAIKs2VEWxVxlJmNGlyzbVn8kUcxXeaJcg"
         }
       ],
       "services": {
