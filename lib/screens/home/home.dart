@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'recipes.dart';
+import '../recipes/recipes.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

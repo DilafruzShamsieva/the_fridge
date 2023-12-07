@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'home.dart';
+import '../screens/home/home.dart';
 
 class RegistrationScreen extends StatelessWidget {
   final TextEditingController _fullNameController = TextEditingController();
