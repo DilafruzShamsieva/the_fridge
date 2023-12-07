@@ -1,7 +1,8 @@
+import 'package:namer_app/services/registration.dart';
+import 'package:namer_app/screens/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../services/registration.dart';
-import '../home/home.dart';
+
 
 class AuthenticationScreen extends StatefulWidget {
   @override
@@ -61,6 +62,10 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
 
                   // Check if the sign-in was successful
                   if (userCredential.user != null) {
+                    //TODO: DEBUG
+                    User? user = userCredential.user;
+                    print(user);
+
                     // Navigate to the home page
                     Navigator.pushReplacement(
                       context,

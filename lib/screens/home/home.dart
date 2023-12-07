@@ -1,6 +1,5 @@
+import 'package:namer_app/screens/recipes/recipes.dart';
 import 'package:flutter/material.dart';
-
-import '../recipes/recipes.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
