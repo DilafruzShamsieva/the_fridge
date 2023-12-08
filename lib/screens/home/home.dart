@@ -1,5 +1,6 @@
 import 'package:namer_app/screens/recipes/recipes.dart';
 import 'package:flutter/material.dart';
+import 'package:namer_app/widgets/nav-drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -23,7 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavDrawer(),
       appBar: AppBar(
+        //TODO:
         title: Text('Welcome to The Fridge'),
       ),
       body: Padding(
