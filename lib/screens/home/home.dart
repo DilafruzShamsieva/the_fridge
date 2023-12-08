@@ -26,8 +26,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBar(
-        //TODO:
-        title: Text('Welcome to The Fridge'),
+        title: Text('Welcome to The Fridge',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: 'IndieFlower'
+          ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),

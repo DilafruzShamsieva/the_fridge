@@ -35,6 +35,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: IndieFlower
+      fonts:
+        - asset: fonts/IndieFlower-Regular.ttf
   assets:
     - assets/
 

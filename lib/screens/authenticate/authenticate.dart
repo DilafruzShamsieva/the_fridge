@@ -23,6 +23,11 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
     );
   }
 
+  //TODO
+  Stream<User?> get user{
+    return _auth.userChanges();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

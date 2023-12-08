@@ -16,9 +16,24 @@ class NavDrawer extends StatelessWidget {
             child: null,
           ),
           ListTile(
-            leading: Icon(Icons.input),
-            title: Text('Welcome'),
-            onTap: () => {},
+            leading: Icon(Icons.home),
+            title: Text('Home'),
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          ListTile(
+            leading: Icon(Icons.menu_book),
+            title: Text('My Recipes'),
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          ListTile(
+            leading: Icon(Icons.storage),
+            title: Text('Ingredients'),
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          ListTile(
+            leading: Icon(Icons.shopping_cart),
+            title: Text('Shopping List'),
+            onTap: () => {Navigator.of(context).pop()},
           ),
           ListTile(
             leading: Icon(Icons.verified_user),
@@ -28,11 +43,6 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
-            onTap: () => {Navigator.of(context).pop()},
-          ),
-          ListTile(
-            leading: Icon(Icons.border_color),
-            title: Text('Feedback'),
             onTap: () => {Navigator.of(context).pop()},
           ),
           ListTile(
