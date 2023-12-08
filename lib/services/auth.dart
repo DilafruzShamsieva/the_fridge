@@ -4,17 +4,8 @@ class AuthService {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // sign in anon
-  Future signInAnon() async {
-    try {
-      UserCredential result = await _auth.signInAnonymously();
-      User? user =  result.user;
-      print(user.toString());
-      return user;
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
+  Stream<User?> get user {
+    return _auth.authStateChanges();
   }
 
 // sign in with email and password
@@ -22,6 +13,14 @@ class AuthService {
 
 // register with email and password
 
-// sign out
 
+// sign out
+  Future signOut() async{
+    try {
+      print("User is signing out ..");
+      return await _auth.signOut();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }

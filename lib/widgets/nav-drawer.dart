@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:namer_app/screens/authenticate/authenticate.dart';
+import 'package:namer_app/screens/home/home.dart';
+import 'package:namer_app/services/auth.dart';
+import 'package:namer_app/screens/recipes/myRecipes.dart';
 
 class NavDrawer extends StatelessWidget {
+  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -18,12 +23,22 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.home),
             title: Text('Home'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen()),
+              )
+            },
           ),
           ListTile(
             leading: Icon(Icons.menu_book),
             title: Text('My Recipes'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => Recipes()),
+              )
+            },
           ),
           ListTile(
             leading: Icon(Icons.storage),
@@ -36,7 +51,7 @@ class NavDrawer extends StatelessWidget {
             onTap: () => {Navigator.of(context).pop()},
           ),
           ListTile(
-            leading: Icon(Icons.verified_user),
+            leading: Icon(Icons.person),
             title: Text('Profile'),
             onTap: () => {Navigator.of(context).pop()},
           ),
@@ -48,7 +63,14 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
-            onTap: () => {Navigator.of(context).pop()},
+            onLongPress: () async{
+              await _auth.signOut();
+              //TODO:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => AuthenticationScreen()),
+              );
+            },
           ),
         ],
       ),
