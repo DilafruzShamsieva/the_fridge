@@ -65,7 +65,7 @@ class NavDrawer extends StatelessWidget {
             title: Text('Logout'),
             onLongPress: () async{
               await _auth.signOut();
-              //TODO:
+              //TODO: fix suggestion
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => AuthenticationScreen()),
