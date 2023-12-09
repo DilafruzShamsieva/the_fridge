@@ -10,29 +10,70 @@ class Recipes extends StatefulWidget {
 
 class _RecipesState extends State<Recipes> {
   List<String> recipes = [];
+  final TextEditingController _ingredientsController = TextEditingController();
+  List<String> ingredients = [];
+  String steps = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBar(
-        title: Text('Generated Recipes  123:'),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Ingredients:',
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8.0),
-            ],
-          ),
+        backgroundColor: Colors.blue[400],
+        title: Text(
+            'Create A Recipe:',
+            style: TextStyle(color: Colors.white)
         ),
+      ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Expanded(
+            flex:3,
+            child: Container(
+                color: Colors.grey[100],
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                    children: <Widget>[
+                      ElevatedButton(
+                        onPressed: () {
+                          String ingred = _ingredientsController.text.trim();
+                          if (!ingredients.contains(ingred)) {
+                            ingredients.add(ingred);
+                          }
+                          setState(() {});
+                        },
+                        child: Text('Add Ingredient'),
+                      ),
+                    ]
+                )
+            ),
+          ),
+          Expanded(
+             flex:5,
+             child: Container(
+                color: Colors.grey[300],
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                    children: <Widget>[
+                      ElevatedButton(
+                        onPressed: () {
+                          String ingred = _ingredientsController.text.trim();
+                          if (!ingredients.contains(ingred)) {
+                            ingredients.add(ingred);
+                          }
+                          setState(() {});
+                        },
+                        child: Text('Save Recipe'),
+                      ),
+                    ]
+                ),
+            )
+          ),
+        ],
       ),
     );
   }
 }
+

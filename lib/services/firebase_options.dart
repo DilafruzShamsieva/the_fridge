@@ -53,11 +53,11 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAIKs2VEWxVxlJmNGlyzbVn8kUcxXeaJcg',
-    appId: '1:687314180313:android:c396e68bb40b51b70186c8',
+    apiKey: 'AIzaSyBVR6vvEEwb2N0VUCi87lkXm07GcdPgn5I',
+    appId: '1:111943998443388:android:b4dcaf30a58a6de2eb8ef9',
     messagingSenderId: '687314180313',
-    projectId: 'csci6180-project',
-    storageBucket: 'csci6180-project.appspot.com',
+    projectId: 'the-fridge-ac372',
+    storageBucket: 'the-fridge-ac372.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(

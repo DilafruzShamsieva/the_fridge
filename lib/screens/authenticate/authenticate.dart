@@ -1,3 +1,4 @@
+import 'package:namer_app/services/database.dart';
 import 'package:namer_app/services/registration.dart';
 import 'package:namer_app/screens/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -35,14 +36,17 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
     void toggleView() {
       setState(() => showSignIn = !showSignIn);
     }
-
-    return loading? Loading() : Scaffold(
+    //TODO
+    //return loading? Loading() : Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[400],
         title: Text(
           'The Fridge',
+          //TODO: fix color
           style: TextStyle(color: Colors.white)
         ),
+
       ),
       body: Container(
         padding: EdgeInsets.all(16.0),
@@ -91,7 +95,10 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                   );
 
                   // Check if the sign-in was successful
-                  if (userCredential.user != null) {
+                  final user = userCredential.user;
+                  if (user != null) {
+                    String uid = user.uid;
+                    await DatabaseService(uid: uid).createRecipeData("sugar", "a test", 1);
                     // Navigate to the home page
                     //TODO: fix suggestion
                     Navigator.pushReplacement(
@@ -103,6 +110,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                     loading = false;
                   }
                 } catch (e) {
+                  loading = false;
                   print('Error signing in: $e');
                   // Handle sign-in error
                 }
