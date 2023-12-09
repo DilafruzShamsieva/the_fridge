@@ -1,4 +1,3 @@
-import 'package:namer_app/services/database.dart';
 import 'package:namer_app/services/registration.dart';
 import 'package:namer_app/screens/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -97,8 +96,6 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                   // Check if the sign-in was successful
                   final user = userCredential.user;
                   if (user != null) {
-                    String uid = user.uid;
-                    await DatabaseService(uid: uid).createRecipeData("sugar", "a test", 1);
                     // Navigate to the home page
                     //TODO: fix suggestion
                     Navigator.pushReplacement(

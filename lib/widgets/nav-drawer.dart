@@ -33,6 +33,11 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.menu_book),
             title: Text('My Recipes'),
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          ListTile(
+            leading: Icon(Icons.edit),
+            title: Text('Create Recipes'),
             onTap: () => {
               Navigator.pushReplacement(
                 context,

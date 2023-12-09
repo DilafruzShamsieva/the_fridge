@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-
+import '../../services/database/RecipeDatabaseService.dart';
 import '../../widgets/nav-drawer.dart';
 
 class Recipes extends StatefulWidget {
@@ -9,9 +9,10 @@ class Recipes extends StatefulWidget {
 }
 
 class _RecipesState extends State<Recipes> {
-  List<String> recipes = [];
-  final TextEditingController _ingredientsController = TextEditingController();
+  final RecipeDatabaseService recipeDb = RecipeDatabaseService();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   List<String> ingredients = [];
+  String ingredient = "";
   String steps = "";
 
   @override
@@ -33,18 +34,43 @@ class _RecipesState extends State<Recipes> {
             flex:3,
             child: Container(
                 color: Colors.grey[100],
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(10.0),
                 child: Column(
                     children: <Widget>[
                       ElevatedButton(
                         onPressed: () {
-                          String ingred = _ingredientsController.text.trim();
-                          if (!ingredients.contains(ingred)) {
-                            ingredients.add(ingred);
+                          if (ingredient!= "" && !ingredients.contains(ingredient)) {
+                            ingredients.add(ingredient);
                           }
                           setState(() {});
+                          print(ingredients);
                         },
                         child: Text('Add Ingredient'),
+                      ),
+                      Text('Click an Ingredient to Remove It'),
+                      TextField(
+                        onChanged: (val){
+                          setState(() => ingredient = val);
+                        },
+                        decoration: InputDecoration(labelText: 'Enter Ingredients'),
+                      ),
+                      SizedBox(height: 16.0),
+                      Expanded(
+                        child: ingredients.isNotEmpty
+                            ? ListView.builder(
+                          itemCount: ingredients.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                                title: Text(ingredients[index]),
+                                onTap: () {
+                                  ingredients.remove(ingredients[index]);
+                                  setState(() {});
+                                });
+                          },
+                        )
+                            : Text('No Ingredients Added',
+                            style: TextStyle(color:Colors.red)
+                        ),
                       ),
                     ]
                 )
@@ -54,19 +80,34 @@ class _RecipesState extends State<Recipes> {
              flex:5,
              child: Container(
                 color: Colors.grey[300],
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(10.0),
                 child: Column(
                     children: <Widget>[
                       ElevatedButton(
                         onPressed: () {
-                          String ingred = _ingredientsController.text.trim();
-                          if (!ingredients.contains(ingred)) {
-                            ingredients.add(ingred);
+                          if(ingredients.isNotEmpty && steps.isNotEmpty) {
+                            final userId = _auth.currentUser?.uid;
+                            recipeDb.createRecipe(userId!, ingredients, steps);
+                            setState(() {});
                           }
-                          setState(() {});
                         },
                         child: Text('Save Recipe'),
                       ),
+                      SizedBox(
+                        height: 400, //     <-- TextField expands to this height.
+                        child: TextFormField(
+                          maxLines: null, // Set this
+                          expands: true, // and this
+                          keyboardType: TextInputType.multiline,
+                          decoration: InputDecoration(
+                            hintText: 'Write preparation steps:',
+                            filled: true,
+                          ),
+                          onChanged: (val){
+                            setState(() => steps = val);
+                          },
+                        ),
+                      )
                     ]
                 ),
             )
