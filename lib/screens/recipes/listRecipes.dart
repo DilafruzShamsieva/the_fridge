@@ -31,6 +31,29 @@ class _ListRecipesState extends State<ListRecipes> {
     });
   }
 
+  Future<void> _dialogBuilder(BuildContext context, String prepSteps) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('View Preparation Steps'),
+          content: Text("$prepSteps"),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     _displayData();
@@ -65,6 +88,7 @@ class _ListRecipesState extends State<ListRecipes> {
                           Text(items[index]["ingredients"].toString()),
                         ],
                       ),
+                      onTap: () => _dialogBuilder(context, items[index]["prepSteps"]),
                     ),
                   );
                 }
