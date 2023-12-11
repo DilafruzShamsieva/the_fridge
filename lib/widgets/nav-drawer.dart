@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:namer_app/screens/authenticate/authenticate.dart';
 import 'package:namer_app/screens/home/home.dart';
 import 'package:namer_app/services/auth.dart';
-import 'package:namer_app/screens/recipes/myRecipes.dart';
+import 'package:namer_app/screens/recipes/createRecipes.dart';
+import 'package:namer_app/screens/recipes/listRecipes.dart';
 
 class NavDrawer extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -33,7 +34,12 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.menu_book),
             title: Text('My Recipes'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => ListRecipes()),
+              )
+            },
           ),
           ListTile(
             leading: Icon(Icons.edit),
@@ -41,7 +47,7 @@ class NavDrawer extends StatelessWidget {
             onTap: () => {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => Recipes()),
+                MaterialPageRoute(builder: (context) => CreateRecipes()),
               )
             },
           ),

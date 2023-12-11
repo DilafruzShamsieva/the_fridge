@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../models/Recipe.dart';
+
 class RecipeDatabaseService {
    // collection reference
    final CollectionReference recipeCollection = FirebaseFirestore.instance.collection('recipes');
@@ -17,5 +19,24 @@ class RecipeDatabaseService {
          'ingredients': ingredients,
          'prepSteps': prepSteps,
       });
+   }
+
+   Future<List<Recipe>> listRecipe(String userId) async{
+      print("list a recipe data by user: $userId");
+      QuerySnapshot querySnapshot = await recipeCollection
+          .where("user_id", isEqualTo: userId)
+          .get();
+
+      List<Recipe> recipes = [];
+      querySnapshot.docs.forEach((doc) {
+         recipes.add(
+             Recipe(
+                recipe_id: doc["recipe_id"],
+                ingredients: List<String>.from(doc["ingredients"]),
+                prepSteps: doc["prepSteps"],
+            )
+         );
+      });
+      return recipes;
    }
 }

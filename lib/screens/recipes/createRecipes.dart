@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import '../../services/database/RecipeDatabaseService.dart';
 import '../../widgets/nav-drawer.dart';
 
-class Recipes extends StatefulWidget {
+class CreateRecipes extends StatefulWidget {
   @override
-  _RecipesState createState() => _RecipesState();
+  _CreateRecipesState createState() => _CreateRecipesState();
 }
 
-class _RecipesState extends State<Recipes> {
+class _CreateRecipesState extends State<CreateRecipes> {
   final RecipeDatabaseService recipeDb = RecipeDatabaseService();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   List<String> ingredients = [];
