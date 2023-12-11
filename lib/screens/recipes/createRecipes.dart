@@ -87,7 +87,7 @@ class _CreateRecipesState extends State<CreateRecipes> {
                         onPressed: () {
                           if(ingredients.isNotEmpty && steps.isNotEmpty) {
                             final userId = _auth.currentUser?.uid;
-                            recipeDb.createRecipe(userId!, ingredients, steps);
+                            recipeDb.createUserRecipe(userId!, ingredients, steps);
                             setState(() {});
                           }
                         },
